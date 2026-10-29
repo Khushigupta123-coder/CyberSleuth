@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | CyberSleuth</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+</head>
+<body>
+    <main class="auth-card">
+        <a class="back-link" href="{{ url_for('welcome') }}">← Home</a>
+
+        <div class="brand-icon">CS</div>
+        <h1>Create your account</h1>
+        <p class="description">Register to start using CyberSleuth.</p>
+
+        {% if error %}
+            <div class="message error">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('register') }}">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text"
+                   placeholder="Choose a username"
+                   minlength="3" maxlength="30"
+                   pattern="[A-Za-z0-9_]+"
+                   title="Use letters, numbers, and underscores only."
+                   autocomplete="username" required>
+
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password"
+                   placeholder="At least 8 characters"
+                   minlength="8" maxlength="128"
+                   autocomplete="new-password" required>
+
+            <label for="confirm_password">Confirm password</label>
+            <input id="confirm_password" name="confirm_password"
+                   type="password" placeholder="Enter password again"
+                   minlength="8" maxlength="128"
+                   autocomplete="new-password" required>
+
+            <button class="button primary full-width" type="submit">
+                Create Account
+            </button>
+        </form>
+
+        <p class="form-footer">
+            Already registered?
+            <a href="{{ url_for('login') }}">Login here</a>
+        </p>
+    </main>
+</body>
+</html>

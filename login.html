@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | CyberSleuth</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+</head>
+<body>
+    <main class="auth-card">
+        <a class="back-link" href="{{ url_for('welcome') }}">← Home</a>
+
+        <div class="brand-icon">CS</div>
+        <h1>Welcome back</h1>
+        <p class="description">Log in to access CyberSleuth.</p>
+
+        {% if error %}
+            <div class="message error">{{ error }}</div>
+        {% endif %}
+
+        {% if success %}
+            <div class="message success">{{ success }}</div>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('login') }}">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text"
+                   placeholder="Enter your username"
+                   minlength="3" maxlength="30" required>
+
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password"
+                   placeholder="Enter your password" required>
+
+            <button class="button primary full-width" type="submit">
+                Login
+            </button>
+        </form>
+
+        <p class="form-footer">
+            Don't have an account?
+            <a href="{{ url_for('register') }}">Register here</a>
+        </p>
+    </main>
+</body>
+</html>
